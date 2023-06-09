@@ -17,7 +17,7 @@ Computation of sensitivities should have first been offered as a feature using a
 
 ### What was done first
 
-Sensitivity of an objective with respect to mesh coordinates necessarily requires adjoint; a tangent approach would not be viable. The absence of an end-to-end tangent implementation significantly inhibits adjoint development and testing.
+Sensitivity of an objective with respect to mesh coordinates necessarily requires adjoint; a tangent approach would not be viable. The absence of an end-to-end tangent implementation has significantly inhibited adjoint development and testing.
 
 ```mermaid
 graph LR
@@ -68,25 +68,26 @@ Also, there should be the capacity to evaluate the primal code path that is to b
 ---
 
 
-## Implementing the adjoint: A specification
+## Constraints that the adjoint needs to fulfil
 
-A) A minimumally functional adjoint implementation requires:
+### A minimumally functional adjoint implementation requires:
 1. an adequate linear solver (such as GMRes)
 2. an adequate means of differentiating code (in house AD tool)
 3. differentiating the minimum code path to obtain adequate sensitivities
 4. support fundamental target builds (g++, clang, CPU + DD parallel)
 
-B) A usable adjoint implementation needs that, but with:
+### A useful adjoint implementation needs that, but with:
 1. parity memory overhead with the primal
 2. parity runtime with the primal
 3. capacity to converge on industrial scale problems
 
-C) A maintainable adjoint implementation needs all that, plus:
+### A maintainable adjoint implementation needs all that, plus:
 1. a guide to converting code to be differentiable 'in three easy steps'
 2. effectively zero code duplication
 3. support all target builds (as above, plus GPU: nNvidia, AMD)
 
--> Industrial scale problems can be solved, covering A and B. But, maintainability, C, presents significant difficulties.
+### Current status
+Industrial scale problems can be solved, covering the minimal and the useful specifications. However, maintainability presents significant, and seemingly intractable, difficulties.
 
 
 ---
