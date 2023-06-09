@@ -98,9 +98,9 @@ C) A maintainable adjoint implementation needs all that, plus:
 A typical AD library treats the floating point type as the only fundamental differentiable numerical type. Here, the vector and tensor types are treated in the same way, too. This effectively rules out Jacobian taping approaches.
 
 ```cpp
-Drv<mode, double> scalar;
-Drv<mode, Vector<3, double>> vector;
-Drv<mode, Tensor<3, double>> tensor;
+Drv<mode, double> scalar;  // Typical for all AD tools
+Drv<mode, Vector<3, double>> vector;  // Treat as primitive to leverage
+Drv<mode, Tensor<3, double>> tensor;  // underlying expression engines.
 ```
 
 ### Each mode computes only its output
