@@ -11,7 +11,7 @@ _Siemens Star-CCM+ adjoint: Coupled implicit flow solver_
 
 ---
 
-## Tangent before adjoint
+## Adjoint retrospective
 
 Computation of sensitivities should have first been offered as a feature using a tangent methodology. This should have later been extended to offer adjoint.
 
@@ -63,11 +63,12 @@ BC-->CFD;
 CFD-->J;
 ```
 
+Also, there should be the capacity to evaluate the primal code path that is to be differentiated. This ensures that the code captures the minimal end-to-end path and using it for finite differencing will provide more representative results than the reference (primal) code path.
 
 ---
 
 
-## Specification
+## Implementing the adjoint: A specification
 
 A) A minimumally functional adjoint implementation requires:
 1. an adequate linear solver (such as GMRes)
@@ -90,7 +91,7 @@ C) A maintainable adjoint implementation needs all that, plus:
 
 ---
 
-## Approach
+## Particular implementation decisions
 
 ### Mathematical types as differentiable types
 
@@ -127,7 +128,10 @@ where `mode` is the differentiation mode enum, i.e. `{PRIMAL, TANGENT, ADJOINT}`
 
 Any algorithm with nested stages must be first rewritten as a flat sequence of steps in order to correctly evaluate the adjoint.
 
-### Language features
+
+---
+
+## Leveraged language features
 
 C++17 seems to be a watershed for providing enough functionality for a relatively clean design. The following has proved to be highly beneficial:
 
