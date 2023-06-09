@@ -1,5 +1,5 @@
 
-# Differentiating large scale software
+# Differentiating industrial software
 
 ### Dominic Jones, June 2023, dominic.jones@gmx.co.uk
 
